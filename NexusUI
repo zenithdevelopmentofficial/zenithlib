@@ -1,3 +1,16 @@
+--[[
+    NexusUI - Premium UI Library
+    A sleek, modern, single-file UI library with buttery smooth animations
+    and glassmorphism aesthetics for Roblox scripts.
+    
+    Usage:
+        local NexusUI = loadstring(...)() -- or require
+        local Window = NexusUI:CreateWindow("My Hub")
+        local Tab = Window:Tab("Main", "⚡")
+        local Section = Tab:Section("Features")
+        Section:Button("Click Me", function() print("Clicked!") end)
+]]
+
 local NexusUI = {}
 
 local TweenService = game:GetService("TweenService")
@@ -10,34 +23,35 @@ local Player = Players.LocalPlayer
 local Mouse = Player:GetMouse()
 
 local Theme = {
-    Background = Color3.fromRGB(12, 12, 16),
-    DarkBackground = Color3.fromRGB(8, 8, 12),
-    Card = Color3.fromRGB(18, 18, 24),
-    CardHover = Color3.fromRGB(24, 24, 32),
-    Elevated = Color3.fromRGB(28, 28, 38),
+    Background = Color3.fromRGB(15, 15, 20),
+    DarkBackground = Color3.fromRGB(10, 10, 14),
+    Card = Color3.fromRGB(22, 22, 30),
+    CardHover = Color3.fromRGB(28, 28, 38),
+    Elevated = Color3.fromRGB(32, 32, 44),
     
-    Accent = Color3.fromRGB(88, 101, 242),
-    AccentGlow = Color3.fromRGB(120, 130, 255),
-    AccentDark = Color3.fromRGB(60, 70, 180),
+    Accent = Color3.fromRGB(99, 102, 241),
+    AccentGlow = Color3.fromRGB(129, 140, 248),
+    AccentDark = Color3.fromRGB(79, 70, 229),
     AccentGradient = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(88, 101, 242)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(138, 79, 255))
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(99, 102, 241)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(139, 92, 246)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(168, 85, 247))
     }),
     
-    Text = Color3.fromRGB(245, 245, 250),
-    TextSecondary = Color3.fromRGB(160, 160, 180),
-    TextMuted = Color3.fromRGB(100, 100, 120),
+    Text = Color3.fromRGB(248, 250, 252),
+    TextSecondary = Color3.fromRGB(148, 163, 184),
+    TextMuted = Color3.fromRGB(100, 116, 139),
     
-    Success = Color3.fromRGB(67, 181, 129),
-    Warning = Color3.fromRGB(250, 166, 26),
-    Error = Color3.fromRGB(237, 66, 69),
-    Info = Color3.fromRGB(59, 165, 255),
+    Success = Color3.fromRGB(34, 197, 94),
+    Warning = Color3.fromRGB(251, 191, 36),
+    Error = Color3.fromRGB(239, 68, 68),
+    Info = Color3.fromRGB(56, 189, 248),
     
-    Border = Color3.fromRGB(40, 40, 55),
-    BorderLight = Color3.fromRGB(60, 60, 80),
+    Border = Color3.fromRGB(51, 65, 85),
+    BorderLight = Color3.fromRGB(71, 85, 105),
     
-    Glass = 0.85,
-    ShadowTransparency = 0.7
+    Glass = 0.88,
+    ShadowTransparency = 0.75
 }
 
 local Fonts = {
@@ -561,7 +575,7 @@ function NexusUI:CreateWindow(title, subtitle)
     Tween(Window, {Size = UDim2.new(0, 600, 0, 420)}, Springs.Snappy)
     
     UserInputService.InputBegan:Connect(function(input, processed)
-        if not processed and input.KeyCode == Enum.KeyCode.RightControl then
+        if not processed and input.KeyCode == Enum.KeyCode.RightShift then
             hidden = not hidden
             if hidden then
                 Tween(Window, {Position = UDim2.new(0.5, 0, -0.5, 0)}, Springs.Smooth)
